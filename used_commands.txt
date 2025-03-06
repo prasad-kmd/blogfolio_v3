@@ -1,2 +1,4 @@
-hugo new site blogfolio_v3 --force
+hugo new site blogfolio_v3 --force --format=yaml
 cd blogfolio_v3
+hugo mod init github.com/prasad-kmd/blogfolio_v3
+hugo mod get github.com/imfing/hextra
