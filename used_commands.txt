@@ -1,0 +1,2 @@
+hugo new site blogfolio_v3 --force
+cd blogfolio_v3

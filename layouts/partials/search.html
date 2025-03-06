@@ -1,0 +1,130 @@
+<!-- Import lunr.js from unpkg.com -->
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+
+<script>
+var documents = [
+  {{ $counter := 0 }}
+  {{ range $page := .Site.Pages }}
+    {{ if not (or (strings.Contains $page.Permalink ".xml") (strings.Contains $page.Permalink "assets")) }}
+    {
+      "id": {{ $counter }},
+      "url": "{{ $page.Permalink }}",
+      "title": "{{ $page.Title }}",
+      "body": "{{ $page.Content | plainify | htmlUnescape }}"
+    }{{$counter = add $counter 1}}{{ if not $.Last }},{{ end }}
+    {{ end }}
+  {{ end }}
+];
+  
+  var idx = lunr(function () {
+      this.ref('id')
+      this.field('title')
+      this.field('body')
+  
+      documents.forEach(function (doc) {
+          this.add(doc)
+      }, this)
+  });
+
+  function lunr_search(term) {
+    document.getElementById('pmbsweb-main').classList.add('search-active');
+    document.getElementById('blogGridContainer').innerHTML = '';
+    if(term) {
+        document.getElementById('blogGridContainer').innerHTML = "<div class='stg-row pmbsweb-section-title'><div class='stg-col-8 stg-offset-2'><div class='align-center'><h2 data-unload='fade-up'>Search results for '" + term + "'</h2><p class='pmbsweb-large-text' data-appear='fade-up' data-unload='fade-up' data-delay='100'></p>Here are the posts that match your search criteria. We strive to provide the best solutions tailored to your needs. Explore the options below to find the perfect fit for your requirements.</div></div></div>";
+        
+        var results = idx.search(term);
+        if(results.length>0){
+            // Create the container div
+            var detailedListWrap = document.createElement('div');
+            detailedListWrap.className = 'pmbsweb-detailed-list-wrap';
+            detailedListWrap.setAttribute('data-unload', 'fade-up');
+            detailedListWrap.setAttribute('data-delay', '200');
+            
+            // Create the list element
+            var list = document.createElement('ul');
+            list.className = 'pmbsweb-detailed-list';
+            
+            for (var i = 0; i < results.length; i++) {
+                var ref = results[i]['ref'];
+                var url = documents[ref]['url'];
+                var title = documents[ref]['title'];
+                var excerpt = documents[ref]['body'].substring(0,300)+'...';
+                var category = documents[ref]['title'].split(' ').slice(0,2).join(' ');
+                
+                // Create list item
+                var listItem = document.createElement('li');
+                
+                // Create title div
+                var titleDiv = document.createElement('div');
+                titleDiv.className = 'pmbsweb-detailed-list-title';
+                var h4 = document.createElement('h4');
+                h4.innerHTML = `<span class="pmbsweb-accent">${i + 1}.</span> ${title}`;
+                titleDiv.appendChild(h4);
+                
+                // Create description div
+                var descriptionDiv = document.createElement('div');
+                descriptionDiv.className = 'pmbsweb-detailed-list-description';
+                var p = document.createElement('p');
+                p.textContent = excerpt;
+                descriptionDiv.appendChild(p);
+                
+                // Create button div
+                var buttonDiv = document.createElement('div');
+                buttonDiv.className = 'pmbsweb-detailed-list-button';
+                var span = document.createElement('span');
+                span.className = 'pmbsweb-icon pmbsweb-icon-explore';
+                buttonDiv.appendChild(span);
+                
+                // Create link
+                var link = document.createElement('a');
+                link.href = url;
+                
+                // Append all elements to list item
+                listItem.appendChild(titleDiv);
+                listItem.appendChild(descriptionDiv);
+                listItem.appendChild(buttonDiv);
+                listItem.appendChild(link);
+                
+                // Add list item to list
+                list.appendChild(listItem);
+            }
+            
+            // Add list to container
+            detailedListWrap.appendChild(list);
+            
+            // Create explore all posts div
+            var exploreDiv = document.createElement('div');
+            exploreDiv.className = 'align-center stg-top-gap';
+            exploreDiv.setAttribute('data-unload', 'zoom-out');
+            exploreDiv.setAttribute('data-delay', '100');
+            var exploreLink = document.createElement('a');
+            exploreLink.href = 'posts.html';
+            exploreLink.className = 'pmbsweb-button';
+            exploreLink.textContent = 'Explore All Posts';
+            exploreDiv.appendChild(exploreLink);
+            
+            // Append container and explore div to blogGridContainer
+            document.getElementById('blogGridContainer').appendChild(detailedListWrap);
+            document.getElementById('blogGridContainer').appendChild(exploreDiv);
+        } else {
+            document.getElementById('blogGridContainer').innerHTML = "<div class='pmbsweb-toggles-item pmbsweb-block' data-unload='fade-up'><div class='pmbsweb-toggles-item--title'><span class='pmbsweb-label'>Nothing Here.</span><h4><sup>∞</sup>No Results !</h4></div><div class='pmbsweb-toggles-item--content'><p>Sorry, But We've got Nothing !</a></p></div></div>";
+        }
+    }
+    return false;
+}
+  // Show blog grid when page loads
+  window.onload = function() {
+      document.getElementById('pmbsweb-main').classList.remove('search-active');
+  }
+</script>
+
+<style>
+    .pmbsweb-toggles-item {
+        margin-bottom: 20px;
+    }
+</style>
+
+<form onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <p><input data-appear='fade-up' data-unload='fade-up' type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search a Blog Post" /></p>
+</form>
+<div id="lunrsearchresults"></div>

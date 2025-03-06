@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ partial "head.html" . }}  <!-- Include head partial -->
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{ partial "font.html" . }}
+  </head>
+  <body>
+    {{ partial "header.html" . }}
+    <main>
+      {{ block "main" . }}{{ end }}  <!-- Content goes here -->
+    </main>
+    {{ partial "rcp.html" . }}
+    {{ partial "backlight.html" . }}
+    {{ partial "footer.html" . }}
+    {{ partial "CookiesConsent.html" . }}
+  </body>
+</html>

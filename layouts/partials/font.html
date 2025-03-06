@@ -1,0 +1,5 @@
+{{ $englishFont := resources.Get "font/English/stylesheet.css" | resources.Minify | resources.Fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $englishFont.Permalink }}" integrity="{{ $englishFont.Data.Integrity }}" crossorigin="anonymous">
+
+{{ $sinhalaFont := resources.Get "font/Sinhala/stylesheet.css" | resources.Minify | resources.Fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $sinhalaFont.Permalink }}" integrity="{{ $sinhalaFont.Data.Integrity }}" crossorigin="anonymous">

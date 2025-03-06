@@ -1,0 +1,29 @@
+<!-- Section: Counters -->
+<section data-padding="bottom">
+    <div class="pmbsweb-grid-4cols pmbsweb-tp-grid-2cols pmbsweb-m-grid-2cols stg-m-small-gap"
+        data-stagger-appear="zoom-in" data-stagger-unload="zoom-out">
+        <!-- Counter Item -->
+        <div class="pmbsweb-counter pmbsweb-block" data-delay="3000">
+            {{ $currentYear := now.Year }}
+            {{ $startYear := 2001 }}
+            {{ $yearsOfAge := sub $currentYear $startYear }}
+            <div class="pmbsweb-counter-number" data-suffix="+">{{ $yearsOfAge }}</div>
+            <div class="pmbsweb-counter-label">Age</div>
+        </div><!-- .pmbsweb-counter -->
+        <!-- Counter Item -->
+        <div class="pmbsweb-counter pmbsweb-block" data-delay="3000">
+            <div class="pmbsweb-counter-number" data-suffix="">{{ len .Site.Data.portfolio }}</div>
+            <div class="pmbsweb-counter-label">Completed Projects</div>
+        </div><!-- .pmbsweb-counter -->
+        <!-- Counter Item -->
+        <div class="pmbsweb-counter pmbsweb-block" data-delay="3000">
+            <div class="pmbsweb-counter-number" data-suffix="">{{ len .Site.RegularPages }}</div>
+            <div class="pmbsweb-counter-label">Total Blog Posts</div>
+        </div><!-- .pmbsweb-counter -->
+        <!-- Counter Item -->
+        <div class="pmbsweb-counter pmbsweb-block is-accented" data-delay="3000">
+            <div class="pmbsweb-counter-number" data-suffix="+">{{ .Site.Params.experience }}</div>
+            <div class="pmbsweb-counter-label">Years of Experience</div>
+        </div><!-- .pmbsweb-counter -->
+    </div><!-- .pmbsweb-grid -->
+</section>

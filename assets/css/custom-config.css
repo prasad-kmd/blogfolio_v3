@@ -1,0 +1,163 @@
+/* Created & Designed by PrasadM @ 2024.05.18 */
+.pm-time {
+    text-align: center;
+}
+
+#pm-hour {
+    font-weight: 250;
+    display: block;
+    font-size: 20px;
+    margin: 0 0 0px;
+    letter-spacing: 2.5px;
+}
+
+#greeting .greeting {
+    font-size: 14px
+}
+
+.greeting {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 12px 15px;
+    outline: 0;
+    border: 0;
+    border-radius: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 320px;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)
+}
+
+
+/*! Custom PWA install button */
+.pwa-button {
+    position: fixed;
+    cursor: help;
+    z-index: 999;
+    left: 20px;
+    bottom: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 25%;
+    background: #000000aa;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.pwa-button::before {
+    content: "";
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    position: absolute;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.pwa-button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00000080;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    animation: 2.5s cubic-bezier(0, 0, 0.2, 1) infinite pwa-button-ping;
+}
+
+.pwa-button[hidden] {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.pwa-button:not([disabled])::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+
+    animation: 1s cubic-bezier(0, 0, 0.2, 1) infinite pwa-button-ping;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 30s linear infinite;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 10px;
+    background-size: 400%;
+}
+
+.pwa-button svg.flash {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.4;
+}
+
+@keyframes pwa-button-ping {
+    50% {
+        transform: scale(1.25);
+        opacity: 0.25;
+    }
+
+    75%,
+    to {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}

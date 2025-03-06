@@ -1,0 +1,233 @@
+<div class="share-fab-container">
+    <div class="plus" id="plus">
+        <div class="plus__line plus__line--v">
+            <div class="plus_link"><i class="fa-duotone fa-solid fa-quote-left"></i></div>
+            <div class="plus_link"></div>
+            <div class="plus__link fab fa-square-facebook"
+                onclick="shareOnSocial('facebook', getPostTitle(), getPostLink())"></div>
+            <div class="plus__link fab fa-square-whatsapp"
+                onclick="shareOnSocial('whatsapp', getPostTitle(), getPostLink())"></div>
+            <div class="plus__link fab fa-telegram" onclick="shareOnSocial('telegram', getPostTitle(), getPostLink())">
+            </div>
+            <div class="plus__link fab fa-linkedin" onclick="shareOnSocial('linkedin', getPostTitle(), getPostLink())">
+            </div>
+            <div class="plus__link fab fa-square-reddit"
+                onclick="shareOnSocial('reddit', getPostTitle(), getPostLink())"></div>
+            <div class="plus__link fab fa-square-x-twitter"
+                onclick="shareOnSocial('twitter', getPostTitle(), getPostLink())"></div>
+            <div class="plus__link fas fa-envelopes-bulk"
+                onclick="shareOnSocial('email', getPostTitle(), getPostLink())"></div>
+            <div class="plus__link fas fa-link" onclick="copyLink(getPostLink())"></div>
+            <div class="plus_link"></div>
+            <div class="plus_link"><i class="fa-duotone fa-solid fa-quote-right"></i></div>
+        </div>
+        <div class="plus__line plus__line--h"></div>
+    </div>
+</div>
+
+<style>
+    /* New container for the floating button */
+    .share-fab-container {
+        position: fixed;
+        /* Make it float */
+        bottom: 20px;
+        /* Distance from the bottom */
+        left: 50%;
+        /* Center horizontally */
+        transform: translateX(-50%);
+        /* Adjust for actual centering */
+        z-index: 1000;
+        /* Ensure it's above other elements */
+    }
+
+    .plus {
+        width: 50px;
+        /* Reduced width */
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        height: 50px;
+        /* Reduced height */
+        /* background: #ffe581; */
+        border-radius: 50%;
+        display: flex;
+        position: relative;
+        /* Remove the old background */
+        background: none;
+        /* Gradient background */
+        background: linear-gradient(45deg, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000096, #000000, #00000096, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000, #00000000);
+        background-size: 400% 400%;
+        /* Larger for better animation */
+        /* Animation */
+        animation: gradientAnimation1 5s linear infinite;
+    }
+
+    @keyframes gradientAnimation1 {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .plus__line {
+        width: 3px;
+        /* Reduced width */
+        height: 25px;
+        /* Reduced height */
+        border-radius: 10px;
+        position: absolute;
+        left: calc(50% - 1.5px);
+        /* Adjusted left */
+        top: calc(50% - 12.5px);
+        /* Adjusted top */
+        /* Remove the old background */
+        background: none;
+        /* Gradient background */
+        background: linear-gradient(45deg, #33ff00, blue, purple, #ee0505, #ffbb00);
+        background-size: 400% 400%;
+        /* Larger for better animation */
+        /* Animation */
+        animation: gradientAnimation 5s ease infinite;
+        /* Adjust duration as needed */
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .plus__line--h {
+        transform: rotate(90deg);
+    }
+
+    .plus__line--v {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        overflow: hidden;
+        transition: all 0.4s ease 0s;
+    }
+
+    .plus__link {
+        color: #fff;
+        font-size: 15px;
+        /* Reduced font size */
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease 0s;
+        transform: scale(0.5);
+    }
+
+    .plus--active {
+        height: 16px;
+        /* Reduced height */
+        border-radius: 30px;
+    }
+
+    .plus--active .plus__line--v {
+        height: 34px;
+        /* Reduced height */
+        top: calc(-100% - 30px);
+        /* Adjusted top */
+        padding: 0 5px;
+        box-sizing: border-box;
+        width: 200px;
+        /* Reduced width */
+        border-radius: 45px;
+        left: calc(50% - 100px);
+        /* Adjusted left */
+    }
+
+    .plus--active .plus__link {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition-delay: 0.05s;
+    }
+</style>
+<script>
+    var plus = document.getElementById('plus');
+
+    function plusToggle() {
+        plus.classList.toggle('plus--active');
+    }
+
+    plus.addEventListener('click', plusToggle);
+
+    function getPostTitle() {
+        // Try to get title from meta tag
+        let title = document.querySelector('meta[property="og:title"]')?.content;
+
+        // If not found try to get title from title tag
+        if (!title) {
+            title = document.querySelector('title')?.textContent;
+        }
+
+        // If not found try to get title from first h1 tag
+        if (!title) {
+            title = document.querySelector('h1')?.textContent;
+        }
+
+        // Trim whitespaces
+        title = title ? title.trim() : "";
+
+        // Use "Default Text" if no title found
+        return title || 'Default Text';
+    }
+
+
+    function getPostLink() {
+        return window.location.href;
+    }
+
+    function shareOnSocial(social, title, link) {
+        let url;
+        switch (social) {
+            case 'facebook':
+                url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}"e=${encodeURIComponent(title)}`;
+                break;
+            case 'whatsapp':
+                url = `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(link)}`;
+                break;
+            case 'telegram':
+                url = `https://t.me/share/url?text=${encodeURIComponent(title)}&url=${encodeURIComponent(link)}`;
+                break;
+            case 'linkedin':
+                url = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`;
+                break;
+            case 'reddit':
+                url = `https://www.reddit.com/submit?url=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`;
+                break;
+            case 'twitter':
+                url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(link)}`;
+                break;
+            case 'email':
+                url = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(link)}`;
+                break;
+            default:
+                return;
+        }
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    function copyLink(link) {
+        navigator.clipboard.writeText(link)
+            .then(() => {
+                alert("Link copied to clipboard!")
+            })
+            .catch(err => {
+                console.error('Failed to copy link: ', err);
+            });
+    }
+</script>

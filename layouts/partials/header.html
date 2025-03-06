@@ -1,0 +1,73 @@
+<!-- Header -->
+<header id="pmbsweb-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+    <!-- Desktop Header -->
+    <div class="pmbsweb-header-inner">
+        <!-- Header Logo -->
+        <div class="pmbsweb-header-lp">
+            <a href="/" class="pmbsweb-logo">
+                <img src="../../assets/img/logo.webp" alt="pmbsweb." width="88" height="24">
+            </a>
+        </div>
+        <!-- Main Menu -->
+        <div class="pmbsweb-header-mp">
+            <nav class="pmbsweb-nav">
+                <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                  <li class="{{ if eq .RelPermalink "/" }}current-menu-parent{{ end }}">
+                    <a href="{{ .Site.BaseURL }}">Home</a>
+                  </li>
+                  <li class="{{ if eq .RelPermalink "/about_me/" }}current-menu-parent{{ end }}">
+                    <a href="{{ .Site.BaseURL }}about_me/">About Me</a>
+                  </li>
+                  <li class="
+                    {{ if or (eq .RelPermalink "/portfolio/") (eq .RelPermalink "/timeline/") (eq .RelPermalink "/Terms_&_Conditions/") (eq .RelPermalink "/Privacy_Policy/") (eq .RelPermalink "/Disclaimer/") }}current-menu-parent{{ end }}">
+                    <a href="#">Pages</a>
+                    <ul class="sub-menu">
+                      <li class="{{ if eq .RelPermalink "/portfolio/" }}current-menu-parent{{ end }}">
+                        <a href="{{ .Site.BaseURL }}portfolio/">My Portfolio</a>
+                      </li>
+                      <li class="{{ if eq .RelPermalink "/timeline/" }}current-menu-parent{{ end }}">
+                        <a href="{{ .Site.BaseURL }}timeline/">Timeline</a>
+                      </li>
+                      <li class="{{ if eq .RelPermalink "/Terms_&_Conditions/" }}current-menu-parent{{ end }}">
+                        <a href="{{ .Site.BaseURL }}Terms_&_Conditions/">Terms & Conditions</a>
+                      </li>
+                      <li class="{{ if eq .RelPermalink "/Privacy_Policy/" }}current-menu-parent{{ end }}">
+                        <a href="{{ .Site.BaseURL }}Privacy_Policy/">Privacy Policy</a>
+                      </li>
+                      <li class="{{ if eq .RelPermalink "/Disclaimer/" }}current-menu-parent{{ end }}">
+                        <a href="{{ .Site.BaseURL }}Disclaimer/">Disclaimer</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="{{ if eq .RelPermalink "/posts/" }}current-menu-parent{{ end }}">
+                    <a href="{{ .Site.BaseURL }}posts/">Blogs</a>
+                  </li>
+                  <li class="{{ if eq .RelPermalink "/contacts/" }}current-menu-parent{{ end }}">
+                    <a href="{{ .Site.BaseURL }}contacts/">Contacts</a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+        <!-- Header Button -->
+        <div class="pmbsweb-header-rp">
+            <a href="../contacts/" class="pmbsweb-button">Get in touch</a>
+        </div>
+    </div>
+    <!-- Mobile Header -->
+    <div class="pmbsweb-mobile-header-inner">
+        <a href="/" class="pmbsweb-logo">
+            <img src="../../assets/img/logo.webp" alt="pmbsweb." width="88" height="24">
+        </a>
+        <div class="pm-time">
+            <span id="pm-hour">00:00:00 AM</span>
+            <!-- <span id="pm-date">Saturday, 18/05/2024</span> -->
+        </div>
+        <a href="#" class="pmbsweb-mobile-menu-toggler">
+            <i class="pmbsweb-menu-toggler-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </i>
+        </a>
+    </div>
+</header>

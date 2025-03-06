@@ -1,0 +1,29 @@
+<!-- Section: Grid -->
+<section id="blogGridContainer">
+    <!-- Portfolio Grid -->
+    <div class="pmbsweb-grid-3cols pmbsweb-tp-grid-2cols pmbsweb-tp-centered-last-item stg-normal-gap pmbsweb-parallax-media"
+        data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
+        {{ range .Site.RegularPages }}
+        <!-- Portfolio Card Item 01 -->
+        <div class="pmbsweb-block pmbsweb-portfolio-card">
+            <div class="pmbsweb-portfolio-card-image">
+                <img class="pmbsweb-lazy" src="img/null.png" data-src="{{ .Params.thumbnail }}" alt="{{ .Title }}"
+                    width="1200" height="1200">
+            </div>
+            <div class="pmbsweb-portfolio-card-footer">
+                <div class="pmbsweb-portfolio-card-title">
+                    <span class="pmbsweb-meta">
+                        {{ range first 2 .Params.categories }}
+                        {{ . }}
+                        {{ if not $.Last }}, {{ end }}
+                        {{ end }}
+                    </span>
+                    <h6>{{ .Title | truncate 20 }}</h6>
+                </div>
+                <span class="pmbsweb-icon pmbsweb-icon-explore"></span>
+            </div>
+            <a href="{{ .Permalink }}"></a>
+        </div><!-- .pmbsweb-portfolio-card -->
+        {{ end }}
+    </div><!-- .pmbsweb-grid -->
+</section>

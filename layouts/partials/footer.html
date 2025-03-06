@@ -1,0 +1,104 @@
+<!-- Footer -->
+<footer id="pmbsweb-footer" data-appear="fade-up" data-unload="fade-down">
+    <!-- Footer Widgets Area -->
+    <div class="pmbsweb-footer-widgets">
+        <div class="stg-container">
+            <div class="stg-row" data-stagger-appear="fade-left" data-stagger-delay="100">
+                <div class="stg-col-5 stg-tp-col-12 stg-tp-bottom-gap-l">
+                    <div class="pmbsweb-info-widget">
+                        <a href="/" class="pmbsweb-logo footer-logo">
+                            <img src="../../assets/img/logo.webp" alt="pmbsweb." width="88" height="24">
+                        </a>
+                        <div class="pmbsweb-info-description">
+                            {{ .Site.Params.description }}
+                        </div>
+                        <span class="pmbsweb-label">Follow me:</span>
+                        <ul class="pmbsweb-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
+                            <li>
+                                <a href="{{ .Site.Params.linkedin }}" target="_blank" class="pmbsweb-socials-linkedin">
+                                    <i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ .Site.Params.github }}" target="_blank" class="pmbsweb-socials-github">
+                                    <i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ .Site.Params.researchgate }}" target="_blank" class="pmbsweb-socials-researchgate">
+                                    <i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ .Site.Params.medium }}" target="_blank" class="pmbsweb-socials-medium">
+                                    <i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ .Site.Params.telegram }}" target="_blank" class="pmbsweb-socials-telegram">
+                                    <i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ .Site.Params.google_maps }}" target="_blank" class="pmbsweb-socials-google-maps">
+                                    <i></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stg-col-2 stg-offset-1 stg-tp-col-4 stg-m-col-4">
+                    <div class="pmbsweb-widget">
+                        <h6>Tools</h6>
+                        <div class="pmbsweb-menu-widget">
+                            <ul>
+                                <li><a href="../scientific-calculator/">Scientific Calculator</a></li>
+                                <li><a href="../search/">Search</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- .pmbsweb-widget -->
+                </div>
+                <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                    <div class="pmbsweb-widget">
+                        <h6>About</h6>
+                        <div class="pmbsweb-menu-widget">
+                            <ul>
+                                <li><a href="about-me.html">About Me</a></li>
+                                <!-- <li><a href="team-member.html">Our Team</a></li>
+                                <li><a href="testimonials.html">Testimonials</a></li> -->
+                                <li><a href="contacts.html">Get in Touch</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- .pmbsweb-widget -->
+                </div>
+                <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                    <div class="pmbsweb-widget">
+                        <h6>Resources</h6>
+                        <div class="pmbsweb-menu-widget">
+                            <ul>
+                                <!-- <li><a href="#">Pricing</a></li> -->
+                                <li><a href="#">Help Center</a></li>
+                                <li><a href="../Disclaimer/">Disclaimer</a></li>
+                                <li><a href="../Terms_&_Conditions/">Terms of Use</a></li>
+                                <li><a href="../Privacy_Policy/">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- .pmbsweb-widget -->
+                </div>
+            </div><!-- .stg-row -->
+        </div><!-- .stg-container -->
+    </div><!-- .pmbsweb-footer-widgets -->
+    <!-- Footer Copyright Line -->
+    <div class="pmbsweb-footer-line stg-container">
+        <div class="align-center">
+            Copyright &copy; {{ .Site.Title }} {{ now.Year }}. All Rights Reserved.
+        </div>
+    </div><!-- pmbsweb-footer-line -->
+    <style>
+        .anime,.animeBlur{position:fixed;width:100%;bottom:0;left:0;right:0;height:3px;z-index:23;background:linear-gradient(-45deg, #4086F4, #31A952, #FBBE01, #EB4132,#4086F4, #31A952, #FBBE01, #EB4132);background-size:200%;-webkit-animation:animeBar 5s linear infinite;animation:animeBar 5s linear infinite}.animeBlur{height:10px;z-index:22;filter:blur(10px);opacity:.7}@-webkit-keyframes animeBar{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes animeBar{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}} 
+    </style>
+    <div class='anime'>
+        <div class='animeBlur'>
+        </div>
+      </div>
+</footer>
